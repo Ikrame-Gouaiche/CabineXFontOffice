@@ -1,0 +1,73 @@
+<footer class="bg-secondary/50 border-t border-border">
+  <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
+    <div class="grid grid-cols-2 gap-8 lg:grid-cols-4">
+      <div class="col-span-2 lg:col-span-1">
+        <div class="flex items-center gap-2">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-foreground">MediCare Pro</span>
+        </div>
+        <p class="mt-4 text-sm text-muted-foreground max-w-xs">
+          La solution de gestion de cabinet médical nouvelle génération avec assistant IA intégré.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-foreground">Produit</h3>
+        <ul class="mt-4 space-y-3">
+          @for (link of footerLinks.produit; track link.name) {
+            <li>
+              <a
+                [href]="link.href"
+                class="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                {{ link.name }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-foreground">Ressources</h3>
+        <ul class="mt-4 space-y-3">
+          @for (link of footerLinks.ressources; track link.name) {
+            <li>
+              <a
+                [href]="link.href"
+                class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {{ link.name }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-foreground">Légal</h3>
+        <ul class="mt-4 space-y-3">
+          @for (link of footerLinks.legal; track link.name) {
+            <li>
+              <a
+                [href]="link.href"
+                class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {{ link.name }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-border pt-8">
+      <p class="text-sm text-muted-foreground text-center">
+        © {{ currentYear }} MediCare Pro. Tous droits réservés. Hébergement certifié HDS.
+      </p>
+    </div>
+  </div>
+</footer>

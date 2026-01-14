@@ -1,0 +1,37 @@
+<section class="py-20 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="relative rounded-3xl bg-primary px-8 py-16 lg:px-16 lg:py-24 overflow-hidden">
+      <div class="absolute inset-0 bg-linear-to-br from-primary via-primary to-accent/50"></div>
+
+      <div class="relative z-10 max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+          Prêt à simplifier la gestion de votre cabinet ?
+        </h2>
+        <p class="mt-4 text-lg text-primary-foreground/80">
+          Rejoignez plus de 2,500 praticiens qui ont choisi MediCare Pro pour se concentrer sur l'essentiel : leurs
+          patients.
+        </p>
+
+        <ul class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-primary-foreground/90">
+          @for (benefit of benefits; track benefit) {
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {{ benefit }}
+            </li>
+          }
+        </ul>
+
+        <div class="mt-10">
+          <button class="gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-6 py-3 rounded-md font-medium inline-flex items-center">
+            Démarrer mon essai gratuit
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

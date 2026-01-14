@@ -1,0 +1,298 @@
+<section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+  <div class="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-accent/5"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-6">
+          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          Solution certifiée HDS
+        </div>
+
+        <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          Gérez votre cabinet médical <span class="text-primary">simplement</span>
+        </h1>
+
+        <p class="mt-6 text-lg leading-relaxed text-muted-foreground max-w-xl mx-auto lg:mx-0">
+          MediCare Pro centralise la gestion des patients, des rendez-vous et de la facturation. Notre assistant IA
+          vous accompagne au quotidien pour optimiser votre pratique.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <button class="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-md font-medium flex items-center justify-center gap-2">
+            Contactez nous
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+          <button class="border border-border bg-transparent text-foreground hover:bg-secondary px-6 py-3 rounded-md font-medium flex items-center justify-center gap-2">
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Voir la démo
+          </button>
+        </div>
+
+        <div class="mt-10 flex flex-wrap items-center gap-6 justify-center lg:justify-start text-sm text-muted-foreground">
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Essai 14 jours gratuit</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span>+2,500 praticiens</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <!-- Formulaire de prise de rendez-vous -->
+        <div class="bg-card rounded-2xl shadow-2xl border border-border p-6 max-w-md mx-auto">
+          <!-- Header du formulaire -->
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-semibold text-foreground">Prendre rendez-vous</h3>
+            <div class="flex items-center gap-2">
+              <span class="flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium"
+                    [class]="currentStep === 1 ? 'bg-primary text-white' : 'bg-accent/20 text-accent'">1</span>
+              <div class="w-8 h-0.5 bg-border"></div>
+              <span class="flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium"
+                    [class]="currentStep === 2 ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'">2</span>
+            </div>
+          </div>
+
+          <!-- Message de confirmation -->
+          @if (isFormSubmitted) {
+            <div class="text-center py-8">
+              <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-accent/20">
+                <svg class="h-8 w-8 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-foreground mb-2">Rendez-vous confirmé !</h4>
+              <p class="text-sm text-muted-foreground mb-4">
+                Votre rendez-vous a été enregistré avec succès.<br>
+                Vous recevrez une confirmation par SMS.
+              </p>
+              <button (click)="resetForm()" class="text-primary hover:underline text-sm font-medium">
+                Prendre un autre rendez-vous
+              </button>
+            </div>
+          } @else {
+            <!-- Étape 1: Informations personnelles -->
+            @if (currentStep === 1) {
+              <div class="space-y-4">
+                <p class="text-sm text-muted-foreground mb-4">Étape 1 : Vos informations personnelles</p>
+                
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Nom *</label>
+                    <input type="text" [(ngModel)]="personalInfo.nom" placeholder="Votre nom"
+                           [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['nom'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')" />
+                    @if (validationErrors['nom']) {
+                      <p class="text-xs text-red-600 mt-1">{{ validationErrors['nom'] }}</p>
+                    }
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Prénom *</label>
+                    <input type="text" [(ngModel)]="personalInfo.prenom" placeholder="Votre prénom"
+                           [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['prenom'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')" />
+                    @if (validationErrors['prenom']) {
+                      <p class="text-xs text-red-600 mt-1">{{ validationErrors['prenom'] }}</p>
+                    }
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Téléphone *</label>
+                    <input type="tel" [(ngModel)]="personalInfo.tel" placeholder="06 XX XX XX XX"
+                           [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['tel'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')" />
+                    @if (validationErrors['tel']) {
+                      <p class="text-xs text-red-600 mt-1">{{ validationErrors['tel'] }}</p>
+                    }
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Sexe *</label>
+                    <select [(ngModel)]="personalInfo.sexe"
+                            [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['sexe'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')">
+                      <option value="">Sélectionner</option>
+                      <option value="M">Masculin</option>
+                      <option value="F">Féminin</option>
+                    </select>
+                    @if (validationErrors['sexe']) {
+                      <p class="text-xs text-red-600 mt-1">{{ validationErrors['sexe'] }}</p>
+                    }
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">CIN *</label>
+                    <input type="text" [(ngModel)]="personalInfo.cin" placeholder="XX000000"
+                           [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['cin'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')" />
+                    @if (validationErrors['cin']) {
+                      <p class="text-xs text-red-600 mt-1">{{ validationErrors['cin'] }}</p>
+                    }
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Date de naissance *</label>
+                    <input type="date" [(ngModel)]="personalInfo.dateNaissance"
+                           [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['dateNaissance'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')" />
+                    @if (validationErrors['dateNaissance']) {
+                      <p class="text-xs text-red-600 mt-1">{{ validationErrors['dateNaissance'] }}</p>
+                    }
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-foreground mb-1">Type de mutuelle *</label>
+                  <select [(ngModel)]="personalInfo.typeMutuelle"
+                          [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['typeMutuelle'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')">
+                    <option value="">Sélectionner</option>
+                    @for (mutuelle of mutuelles; track mutuelle) {
+                      <option [value]="mutuelle">{{ mutuelle }}</option>
+                    }
+                  </select>
+                  @if (validationErrors['typeMutuelle']) {
+                    <p class="text-xs text-red-600 mt-1">{{ validationErrors['typeMutuelle'] }}</p>
+                  }
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-foreground mb-1">Cabinet *</label>
+                  <select [(ngModel)]="personalInfo.cabinetId"
+                          [class]="'w-full px-3 py-2 rounded-md border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 ' + (validationErrors['cabinetId'] ? 'border-red-500 bg-red-50' : 'border-border bg-background')">
+                    <option [ngValue]="null">Sélectionner un cabinet</option>
+                    @for (cabinet of cabinets; track cabinet.id) {
+                      <option [ngValue]="cabinet.id">{{ cabinet.name }} - {{ cabinet.address }}</option>
+                    }
+                  </select>
+                  @if (validationErrors['cabinetId']) {
+                    <p class="text-xs text-red-600 mt-1">{{ validationErrors['cabinetId'] }}</p>
+                  }
+                </div>
+
+                @if (errorMessage) {
+                  <div class="p-3 rounded-md bg-red-100 border border-red-300 text-red-700 text-sm">
+                    {{ errorMessage }}
+                  </div>
+                }
+
+                <button (click)="nextStep()" [disabled]="!isStep1Valid() || isLoading"
+                        class="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2.5 rounded-md font-medium flex items-center justify-center gap-2 transition-all">
+                  @if (isLoading) {
+                    <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Enregistrement...
+                  } @else {
+                    Continuer
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  }
+                </button>
+              </div>
+            }
+
+            <!-- Étape 2: Prise de rendez-vous -->
+            @if (currentStep === 2) {
+              <div class="space-y-4">
+                <p class="text-sm text-muted-foreground mb-4">Étape 2 : Choisissez votre rendez-vous</p>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Date *</label>
+                    <input type="date" [(ngModel)]="appointmentInfo.date" [min]="minDate"
+                           class="w-full px-3 py-2 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-foreground mb-1">Heure *</label>
+                    <select [(ngModel)]="appointmentInfo.heure"
+                            class="w-full px-3 py-2 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
+                      <option value="">Sélectionner</option>
+                      @for (heure of heures; track heure) {
+                        <option [value]="heure">{{ heure }}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-foreground mb-2">Motif *</label>
+                  <div class="flex gap-3">
+                    <label class="flex-1 relative cursor-pointer">
+                      <input type="radio" name="motif" value="Consultation" [(ngModel)]="appointmentInfo.motif" class="peer sr-only" />
+                      <div class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-border bg-background text-foreground text-sm font-medium transition-all peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Consultation
+                      </div>
+                    </label>
+                    <label class="flex-1 relative cursor-pointer">
+                      <input type="radio" name="motif" value="Contrôle" [(ngModel)]="appointmentInfo.motif" class="peer sr-only" />
+                      <div class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-border bg-background text-foreground text-sm font-medium transition-all peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/50">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                        Contrôle
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-foreground mb-1">Notes (optionnel)</label>
+                  <textarea [(ngModel)]="appointmentInfo.notes" rows="2" placeholder="Informations complémentaires..."
+                            class="w-full px-3 py-2 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"></textarea>
+                </div>
+
+                @if (errorMessage) {
+                  <div class="p-3 rounded-md bg-red-100 border border-red-300 text-red-700 text-sm">
+                    {{ errorMessage }}
+                  </div>
+                }
+
+                <div class="flex gap-3 mt-4">
+                  <button (click)="previousStep()" [disabled]="isLoading"
+                          class="flex-1 border border-border bg-transparent text-foreground hover:bg-secondary disabled:opacity-50 px-4 py-2.5 rounded-md font-medium flex items-center justify-center gap-2 transition-all">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                    Retour
+                  </button>
+                  <button (click)="submitForm()" [disabled]="!isStep2Valid() || isLoading"
+                          class="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2.5 rounded-md font-medium flex items-center justify-center gap-2 transition-all">
+                    @if (isLoading) {
+                      <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Confirmation...
+                    } @else {
+                      Confirmer
+                      <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    }
+                  </button>
+                </div>
+              </div>
+            }
+          }
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</section>
