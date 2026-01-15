@@ -1,11 +1,15 @@
-import { Component, signal, effect, ViewChild, ElementRef } from '@angular/core';
+import { Component, signal, effect, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChatbotService, ChatMessageResponse, ClinicInfo, DoctorInfo, SlotInfo } from '../../services/chatbot.service';
 
 interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
+  clinics?: ClinicInfo[];
+  doctors?: DoctorInfo[];
+  slots?: SlotInfo[];
 }
 
 @Component({
@@ -18,6 +22,8 @@ interface Message {
 export class ChatbotComponent {
   @ViewChild('messagesEnd') private messagesEnd!: ElementRef;
 
+  private chatbotService = inject(ChatbotService);
+
   isOpen = signal(false);
   input = signal('');
   isTyping = signal(false);
@@ -27,11 +33,11 @@ export class ChatbotComponent {
       id: '1',
       role: 'assistant',
       content:
-        'Bonjour ! Je suis l\'assistant MediCare Pro. Comment puis-je vous aider ? Vous pouvez me poser des questions sur nos services ou demander à prendre un rendez-vous.',
+        'Bonjour ! 👋 Je suis l\'assistant virtuel CabinetX.\n\nJe peux vous aider avec:\n- 🏥 Informations sur nos cabinets\n- 👨‍⚕️ Liste des médecins disponibles\n- 📅 Créneaux horaires disponibles\n\nComment puis-je vous aider ?',
     },
   ]);
 
-  quickReplies = ['Prendre rendez-vous', 'Voir les tarifs', 'Contacter un conseiller'];
+  quickReplies = ['Voir les cabinets', 'Médecins disponibles', 'Créneaux disponibles', 'Aide'];
 
   constructor() {
     effect(() => {
@@ -64,36 +70,32 @@ export class ChatbotComponent {
     this.input.set('');
     this.isTyping.set(true);
 
-    setTimeout(() => {
-      const responses: Record<string, string> = {
-        'prendre rendez-vous':
-          'Bien sûr ! Pour prendre rendez-vous, je vous invite à créer un compte gratuit. Vous pourrez ensuite choisir le praticien, la date et l\'heure qui vous conviennent. Souhaitez-vous que je vous guide ?',
-        'voir les tarifs':
-          'Nos tarifs commencent à 49€/mois pour un praticien solo. Nous proposons également des offres pour les cabinets de groupe et les cliniques. Voulez-vous plus de détails sur un forfait en particulier ?',
-        'contacter un conseiller':
-          'Je peux vous mettre en relation avec un conseiller. Vous pouvez nous appeler au 01 23 45 67 89 ou nous envoyer un email à contact@medicare-pro.fr. Un conseiller vous répondra sous 24h ouvrées.',
-      };
+    // Call the backend chatbot service
+    this.chatbotService.sendMessage(text.trim()).subscribe({
+      next: (response: ChatMessageResponse) => {
+        const assistantMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: response.reply,
+          clinics: response.clinics,
+          doctors: response.doctors,
+          slots: response.availableSlots,
+        };
 
-      const lowerText = text.toLowerCase();
-      let response =
-        'Merci pour votre message ! Je suis là pour vous aider avec la gestion de votre cabinet médical. N\'hésitez pas à me poser des questions sur nos fonctionnalités, nos tarifs ou la prise de rendez-vous.';
-
-      for (const [key, value] of Object.entries(responses)) {
-        if (lowerText.includes(key)) {
-          response = value;
-          break;
-        }
+        this.messages.update(msgs => [...msgs, assistantMessage]);
+        this.isTyping.set(false);
+      },
+      error: (error) => {
+        console.error('Error sending message:', error);
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: 'Désolé, une erreur est survenue. Veuillez réessayer.',
+        };
+        this.messages.update(msgs => [...msgs, errorMessage]);
+        this.isTyping.set(false);
       }
-
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: response,
-      };
-
-      this.messages.update(msgs => [...msgs, assistantMessage]);
-      this.isTyping.set(false);
-    }, 1500);
+    });
   }
 
   handleQuickReply(reply: string) {
@@ -103,5 +105,17 @@ export class ChatbotComponent {
   onSubmit(event: Event) {
     event.preventDefault();
     this.handleSend(this.input());
+  }
+
+  resetChat() {
+    this.chatbotService.resetSession();
+    this.messages.set([
+      {
+        id: '1',
+        role: 'assistant',
+        content:
+          'Bonjour ! 👋 Je suis l\'assistant virtuel CabinetX.\n\nJe peux vous aider avec:\n- 🏥 Informations sur nos cabinets\n- 👨‍⚕️ Liste des médecins disponibles\n- 📅 Créneaux horaires disponibles\n\nComment puis-je vous aider ?',
+      },
+    ]);
   }
 }
