@@ -1,7 +1,29 @@
+/**
+ * API Service for Front Office Application
+ * 
+ * This service provides HTTP client methods for interacting with the CabinetX
+ * backend API Gateway. It handles all REST API calls for clinic management,
+ * patient registration, and appointment scheduling from the public-facing
+ * front office application.
+ * 
+ * All requests are routed through the API Gateway at port 8080 which handles:
+ * - Load balancing
+ * - Service discovery
+ * - Authentication/Authorization
+ * - Rate limiting
+ * 
+ * @author CabinetX Development Team
+ * @version 1.0
+ * @since 2025
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+/**
+ * Clinic Data Transfer Object
+ * Represents a medical clinic/cabinet in the system
+ */
 export interface ClinicDTO {
   id: number;
   name: string;

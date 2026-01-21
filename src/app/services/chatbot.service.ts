@@ -1,8 +1,25 @@
+/**
+ * Chatbot Service for Front Office Application
+ * 
+ * This service manages all interactions with the intelligent chatbot backend,
+ * providing conversational AI capabilities for appointment booking, clinic
+ * information retrieval, and doctor availability queries.
+ * 
+ * Features:
+ * - Session-based conversation tracking
+ * - Clinic and doctor information retrieval
+ * - Available time slot queries
+ * - Natural language processing integration
+ * 
+ * @author CabinetX Development Team
+ * @version 1.0
+ * @since 2025
+ */
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, catchError, of } from 'rxjs';
 
-// Interfaces matching backend DTOs
+/** Clinic information structure from backend */
 export interface ClinicInfo {
   id: number;
   name: string;
